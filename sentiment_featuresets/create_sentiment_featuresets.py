@@ -17,16 +17,15 @@ def create_lexicon(pos,neg):
             for l in contents[:hm_lines]:
                 all_words = word_tokenize(l)
                 lexicon += list(all_words)
-
     lexicon = [lemmatizer.lemmatize(i) for i in lexicon]
     w_counts = Counter(lexicon)
-    #w_counts = {'the':52521,'and':25242}
     l2 = []
     for w in w_counts:
         if 1000 > w_counts[w] > 50:
             l2.append(w)
     print(len(l2))
     return l2
+
 
 def sample_handling(sample,lexicon,classification):
     featureset = []
@@ -43,6 +42,7 @@ def sample_handling(sample,lexicon,classification):
             features = list(features)
             featureset.append([features, classification])
     return featureset
+
 
 def create_feature_sets_and_labels(pos,neg,test_size=0.1):
     lexicon = create_lexicon(pos,neg)
