@@ -17,6 +17,7 @@ batch_size = 100
 x = tf.placeholder('float', [None, 784])
 y = tf.placeholder('float')
 
+
 def neural_network_model(data):
     # Hidden layers of deep neural network
     hidden_1_layer = {'weights':tf.Variable(tf.random_normal([784, n_nodes_hl1])),
@@ -41,6 +42,7 @@ def neural_network_model(data):
     output = tf.matmul(l3, output_layer['weights']) + output_layer['biases']
 
     return output
+
 
 def train_neural_netowrk(x):
     prediction = neural_network_model(x)
