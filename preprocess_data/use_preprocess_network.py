@@ -50,7 +50,7 @@ saver = tf.train.Saver()
 
 def use_neural_network(input_data):
     prediction = neural_network_model(x)
-    with open('lexicon.pickle','rb') as f:
+    with open('lexicon-2500-2638.pickle','rb') as f:
         lexicon = pickle.load(f)
 
     with tf.Session() as sess:
