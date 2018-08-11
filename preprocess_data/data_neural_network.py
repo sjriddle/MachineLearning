@@ -45,10 +45,10 @@ tf_log = 'tf.log'
 
 def train_neural_network(x):
     prediction = neural_network_model(x)
-    cost = tf.reduce_mean( tf.nn.softmax_cross_entropy_with_logits(prediction,y) )
+    cost = tf.reduce_mean( tf.nn.softmax_cross_entropy_with_logits(logits=prediction, labels=y) )
     optimizer = tf.train.AdamOptimizer(learning_rate=0.001).minimize(cost)
     with tf.Session() as sess:
-        sess.run(tf.initialize_all_variables())
+        sess.run(tf.global_variables_initializer())
         try:
             epoch = int(open(tf_log,'r').read().split('\n')[-2])+1
             print('STARTING:',epoch)
@@ -59,7 +59,7 @@ def train_neural_network(x):
             if epoch != 1:
                 saver.restore(sess,"model.ckpt")
             epoch_loss = 1
-            with open('lexicon.pickle','rb') as f:
+            with open('lexicon-2500-2638.pickle','rb') as f:
                 lexicon = pickle.load(f)
             with open('train_set_shuffled.csv', buffering=20000, encoding='latin-1') as f:
                 batch_x = []
@@ -102,13 +102,15 @@ train_neural_network(x)
 def test_neural_network():
     prediction = neural_network_model(x)
     with tf.Session() as sess:
-        sess.run(tf.initialize_all_variables())
+        sess.run(tf.global_variables_initializer())
+
         for epoch in range(hm_epochs):
             try:
                 saver.restore(sess,"model.ckpt")
             except Exception as e:
                 print(str(e))
             epoch_loss = 0
+
 
         correct = tf.equal(tf.argmax(prediction, 1), tf.argmax(y, 1))
         accuracy = tf.reduce_mean(tf.cast(correct, 'float'))
@@ -120,14 +122,20 @@ def test_neural_network():
                 try:
                     features = list(eval(line.split('::')[0]))
                     label = list(eval(line.split('::')[1]))
+
+                    #print(features)
+                    #print(label)
+
                     feature_sets.append(features)
                     labels.append(label)
                     counter += 1
                 except:
                     pass
         print('Tested',counter,'samples.')
+
         test_x = np.array(feature_sets)
         test_y = np.array(labels)
         print('Accuracy:',accuracy.eval({x:test_x, y:test_y}))
 
-#test_neural_network()
+
+test_neural_network()
