@@ -16,7 +16,6 @@ def best_fit_slope_and_intercept(xs,ys):
     return m,b
 
 m,b = best_fit_slope_and_intercept(xs,ys)
-
 regression_line = [(m*x)+b for x in xs]
 
 predict_x = 8
