@@ -17,7 +17,6 @@ batch_size = 100
 x = tf.placeholder('float', [None, 784])
 y = tf.placeholder('float')
 
-
 def neural_network_model(data):
     # Hidden layers of deep neural network
     hidden_1_layer = {'weights':tf.Variable(tf.random_normal([784, n_nodes_hl1])),
@@ -50,7 +49,6 @@ def train_neural_netowrk(x):
     optimizer = tf.train.AdamOptimizer().minimize(cost)
 
     hm_epochs = 10
-
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
 
