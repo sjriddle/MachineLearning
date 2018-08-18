@@ -44,6 +44,7 @@ regression_line = [(m*x)+b for x in xs]
 
 predict_x = 8
 predict_y = (m*predict_x) + b
+
 r_squared = coefficient_of_determination(ys, regression_line)
 print(r_squared)
 
