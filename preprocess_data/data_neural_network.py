@@ -9,11 +9,6 @@ lemmatizer = WordNetLemmatizer()
 
 '''
 polarity 0 = negative. 2 = neutral. 4 = positive.
-id
-date
-query
-user
-tweet
 '''
 
 def init_process(fin,fout):
