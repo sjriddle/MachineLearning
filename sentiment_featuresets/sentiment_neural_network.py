@@ -51,6 +51,7 @@ def train_neural_network(x):
     hm_epochs = 10
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
+        
         for epoch in range(hm_epochs):
             epoch_loss = 0
             i = 0
