@@ -18,16 +18,12 @@ y = tf.placeholder('float')
 def neural_network_model(data):
     hidden_1_layer = {'weights':tf.Variable(tf.random_normal([len(train_x[0]), n_nodes_hl1])),
                       'biases':tf.Variable(tf.random_normal([n_nodes_hl1]))}
-
     hidden_2_layer = {'weights':tf.Variable(tf.random_normal([n_nodes_hl1, n_nodes_hl2])),
                       'biases':tf.Variable(tf.random_normal([n_nodes_hl2]))}
-
     hidden_3_layer = {'weights':tf.Variable(tf.random_normal([n_nodes_hl2, n_nodes_hl3])),
                       'biases':tf.Variable(tf.random_normal([n_nodes_hl3]))}
-
     output_layer = {'weights':tf.Variable(tf.random_normal([n_nodes_hl3, n_classes])),
                     'biases':tf.Variable(tf.random_normal([n_classes])),}
-
 
     l1 = tf.add(tf.matmul(data,hidden_1_layer['weights']), hidden_1_layer['biases'])
     l1 = tf.nn.relu(l1)
@@ -64,9 +60,8 @@ def train_neural_network(x):
                 _, c = sess.run([optimizer, cost], feed_dict={x: batch_x, y: batch_y})
                 epoch_loss += c
                 i += batch_size
-
             print('Epoch', epoch+1, 'completed out of',hm_epochs,'loss:',epoch_loss)
-
+            
         correct = tf.equal(tf.argmax(prediction, 1), tf.argmax(y, 1))
         accuracy = tf.reduce_mean(tf.cast(correct, 'float'))
         print('Accuracy:',accuracy.eval({x:test_x, y:test_y}))
