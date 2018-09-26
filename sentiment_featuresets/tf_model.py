@@ -39,7 +39,6 @@ def neural_network_model(data):
     l3 = tf.nn.relu(l3)
 
     output = tf.matmul(l3, output_layer['weights']) + output_layer['biases']
-
     return output
 
 
@@ -64,4 +63,4 @@ def train_neural_netowrk(x):
         accuracy = tf.reduce_mean(tf.cast(correct, 'float'))
         print('Accuracy:', accuracy.eval({x:mnist.test.images, y:mnist.test.labels}))
 
-train_neural_netowrk(x)
+train_neural_network(x)
