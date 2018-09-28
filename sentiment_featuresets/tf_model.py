@@ -42,7 +42,7 @@ def neural_network_model(data):
     return output
 
 
-def train_neural_netowrk(x):
+def train_neural_network(x):
     prediction = neural_network_model(x)
     cost = tf.reduce_mean( tf.nn.softmax_cross_entropy_with_logits(logits=prediction, labels=y) )
     optimizer = tf.train.AdamOptimizer().minimize(cost)
