@@ -7,10 +7,7 @@ import pandas as pd
 
 lemmatizer = WordNetLemmatizer()
 
-'''
-polarity 0 = negative. 2 = neutral. 4 = positive.
-'''
-
+# polarity 0 = negative. 2 = neutral. 4 = positive.
 def init_process(fin,fout):
 	outfile = open(fout,'a')
 	with open(fin, buffering=200000, encoding='latin-1') as f:
