@@ -4,6 +4,7 @@ import numpy as np
 import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.stem import WordNetLemmatizer
+
 lemmatizer = WordNetLemmatizer()
 
 n_nodes_hl1 = 500
