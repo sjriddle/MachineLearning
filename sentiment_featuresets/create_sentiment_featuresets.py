@@ -17,14 +17,12 @@ def create_lexicon(pos,neg):
             for l in contents[:hm_lines]:
                 all_words = word_tokenize(l)
                 lexicon += list(all_words)
-                
     lexicon = [lemmatizer.lemmatize(i) for i in lexicon]
     w_counts = Counter(lexicon)
     l2 = []
     for w in w_counts:
         if 1000 > w_counts[w] > 50:
-            l2.append(w)
-            
+            l2.append(w)            
     print(len(l2))
     return l2
 
@@ -40,11 +38,9 @@ def sample_handling(sample,lexicon,classification):
             for word in current_words:
                 if word.lower() in lexicon:
                     index_value = lexicon.index(word.lower())
-                    features[index_value] += 1
-                    
+                    features[index_value] += 1                    
             features = list(features)
-            featureset.append([features, classification])
-            
+            featureset.append([features, classification])            
     return featureset
 
 
