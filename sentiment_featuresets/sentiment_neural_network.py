@@ -45,18 +45,15 @@ def train_neural_network(x):
     
     hm_epochs = 10
     with tf.Session() as sess:
-        sess.run(tf.global_variables_initializer())
-        
+        sess.run(tf.global_variables_initializer()) 
         for epoch in range(hm_epochs):
             epoch_loss = 0
             i = 0
             while i < len(train_x):
                 start = i
                 end = i+batch_size
-
                 batch_x = np.array(train_x[start:end])
                 batch_y = np.array(train_y[start:end])
-
                 _, c = sess.run([optimizer, cost], feed_dict={x: batch_x, y: batch_y})
                 epoch_loss += c
                 i += batch_size
