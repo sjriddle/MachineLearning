@@ -27,7 +27,6 @@ def init_process(fin,fout):
 					initial_polarity = [1,0]
 				elif initial_polarity == '4':
 					initial_polarity = [0,1]
-
 				tweet = line.split(',')[-1]
 				outline = str(initial_polarity)+':::'+tweet
 				outfile.write(outline)
@@ -58,7 +57,6 @@ def create_lexicon(fin):
 			print(str(e))
 	with open('lexicon-2500-2638.pickle','wb') as f:
 		pickle.dump(lexicon,f)
-
 create_lexicon('train_set.csv')
 
 
@@ -82,11 +80,9 @@ def convert_to_vec(fin,fout,lexicon_pickle):
 					index_value = lexicon.index(word.lower())
 					# OR DO +=1, test both
 					features[index_value] += 1
-
 			features = list(features)
 			outline = str(features)+'::'+str(label)+'\n'
 			outfile.write(outline)
-
 		print(counter)
 
 convert_to_vec('test_set.csv','processed-test-set.csv','lexicon-2500-2638.pickle')
