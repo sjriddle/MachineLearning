@@ -46,13 +46,10 @@ def create_lexicon(fin):
 					words = [lemmatizer.lemmatize(i) for i in words]
 					lexicon = list(set(lexicon + words))
 					print(counter, len(lexicon))
-
 		except Exception as e:
 			print(str(e))
-
 	with open('lexicon-2500-2638.pickle','wb') as f:
 		pickle.dump(lexicon,f)
-
 create_lexicon('train_set.csv')
 
 
