@@ -8,7 +8,6 @@ df.drop(['id'],1,inplace=True)
 
 x = df.drop(['class'],1)
 y = np.array(df['class'])
-
 x_train, x_test, y_train, y_test = model_selection.train_test_split(x,y,test_size=0.25)
 
 clf = neighbors.KNeighborsClassifier()
