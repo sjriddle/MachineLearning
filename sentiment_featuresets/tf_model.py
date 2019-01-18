@@ -28,7 +28,7 @@ def neural_network_model(data):
     output_layer = {'weights':tf.Variable(tf.random_normal([n_nodes_hl3, n_classes])),
                     'biases':tf.Variable(tf.random_normal([n_classes]))}
 
-    # (input_data * weights) + biases
+    # (weights * input_data) + biases
     l1 = tf.add(tf.matmul(data, hidden_1_layer['weights']), hidden_1_layer['biases'])
     l1 = tf.nn.relu(l1)
 
