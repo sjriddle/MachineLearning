@@ -71,5 +71,5 @@ def use_neural_network(input_data):
         elif result[0] == 1:
             print('Negative:',input_data)
 
-use_neural_network("He's an idiot and a jerk.")
-use_neural_network("This was the best store i've ever seen.")
+use_neural_network("Bad Result")
+use_neural_network("Good Result")
