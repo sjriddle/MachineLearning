@@ -19,7 +19,6 @@ hm_epochs = 10
 x = tf.placeholder('float')
 y = tf.placeholder('float')
 
-
 current_epoch = tf.Variable(1)
 
 hidden_1_layer = {'f_fum':n_nodes_hl1,
@@ -36,7 +35,6 @@ output_layer = {'f_fum':None,
 
 
 def neural_network_model(data):
-
     l1 = tf.add(tf.matmul(data,hidden_1_layer['weight']), hidden_1_layer['bias'])
     l1 = tf.nn.relu(l1)
 
@@ -53,7 +51,6 @@ def use_neural_network(input_data):
     prediction = neural_network_model(x)
     with open('lexicon-2500-2638.pickle','rb') as f:
         lexicon = pickle.load(f)
-
     with tf.Session() as sess:
         sess.run(tf.initialize_all_variables())
         saver.restore(sess,"model.ckpt")
@@ -64,9 +61,7 @@ def use_neural_network(input_data):
         for word in current_words:
             if word.lower() in lexicon:
                 index_value = lexicon.index(word.lower())
-                # OR DO +=1, test both
                 features[index_value] += 1
-
         features = np.array(list(features))
         # pos: [1,0] , argmax: 0
         # neg: [0,1] , argmax: 1
