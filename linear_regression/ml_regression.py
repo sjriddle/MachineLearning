@@ -16,7 +16,6 @@ df = df[['Adj. Close', 'HL_PCT', 'PCT_change', 'Adj. Volume']]
 
 forecast_col = 'Adj. Close'
 df.fillna(-99999, inplace=True)
-
 forecast_out = int(math.ceil(0.1*len(df)))
 print(forecast_out)
 
@@ -34,7 +33,6 @@ x_train, x_test, y_train, y_test = cross_validation.train_test_split(x, y, test_
 
 clf = LinearRegression(n_jobs=-1)
 clf.fit(x_train,y_train
-        
 with open('linearregression.pickle', 'wb') as f:
     pickle.dump(clf, f)
 pickle_in = open('linearregression.pickle', 'rb')
