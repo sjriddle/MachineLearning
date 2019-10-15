@@ -17,7 +17,7 @@ tweet
 '''
 
 def init_process(fin,fout):
-	outfile = open(fout,'a')
+	outfile = open(fout, 'a')
 	with open(fin, buffering=200000, encoding='latin-1') as f:
 		try:
 			for line in f:
@@ -48,7 +48,7 @@ def create_lexicon(fin):
 				counter += 1
 				if (counter/2500.0).is_integer():
 					tweet = line.split(':::')[1]
-					content += ' '+tweet
+					content +=' '+tweet
 					words = word_tokenize(content)
 					words = [lemmatizer.lemmatize(i) for i in words]
 					lexicon = list(set(lexicon + words))
