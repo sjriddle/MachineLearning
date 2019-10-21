@@ -19,7 +19,6 @@ def init_process(fin,fout):
 					initial_polarity = [1,0]
 				elif initial_polarity == '4':
 					initial_polarity = [0,1]
-
 				tweet = line.split(',')[-1]
 				outline = str(initial_polarity)+':::'+tweet
 				outfile.write(outline)
