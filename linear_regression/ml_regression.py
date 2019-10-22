@@ -32,7 +32,7 @@ y = np.array(df['label'])
 x_train, x_test, y_train, y_test = cross_validation.train_test_split(x, y, test_size=0.2)
 
 clf = LinearRegression(n_jobs=-1)
-clf.fit(x_train,y_train
+clf.fit(x_train,y_train)
 with open('linearregression.pickle', 'wb') as f:
     pickle.dump(clf, f)
 pickle_in = open('linearregression.pickle', 'rb')
