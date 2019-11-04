@@ -36,7 +36,6 @@ def model(mod, X_tr, X_te):
     print('Model score = ', mod.score(X_te,y_test)*100, '%')
 
 
-# split data
 msk = np.random.rand(len(df)) < 0.85
 df_train_test = df[msk]
 df_val = df[~msk]
@@ -45,6 +44,7 @@ X = df_train_test.drop('cardio', axis=1)
 y = df_train_test['cardio']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=70)
 
+# Logistical Regression with array of thresholds
 lr = LogisticRegression()
 threshold = [0.001, 0.002, 0.005, 0.01, 0.05, 0.1]
 for i in threshold:
