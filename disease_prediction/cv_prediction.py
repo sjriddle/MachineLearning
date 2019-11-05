@@ -2,14 +2,12 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import warnings
 
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report,confusion_matrix
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.preprocessing import StandardScaler
 
-import warnings
+
 warnings.filterwarnings('ignore')
 
 df = pd.read_csv('./cv_train.csv', sep=';')
