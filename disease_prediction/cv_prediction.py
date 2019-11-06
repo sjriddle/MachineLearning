@@ -30,7 +30,6 @@ def feat_select(threshold):
 
 def model(mod, X_tr, X_te):
     mod.fit(X_tr,y_train)
-    pred = mod.predict(X_te)
     print('Model score = ', mod.score(X_te,y_test)*100, '%')
 
 
