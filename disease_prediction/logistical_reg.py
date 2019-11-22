@@ -1,5 +1,8 @@
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report,confusion_matrix
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import StandardScaler
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -43,5 +46,62 @@ for i in th:
     train_model(lr, x_train_i, x_score_i)
 
 
+scale = StandardScaler()
+scale.fit(x_train)
+x_train_scaled = scale.transform(x_train)
+x_train_ = pd.DataFrame(x_train_scaled, columns=df.columns[:-1])
+
+scale.fit(x_score)
+x_score_scaled = scale.transform(x_score)
+x_score_ = pd.DataFrame(x_score_scaled, columns=df.columns[:-1])
 
 
+# Find the best thresholds
+for i in th:
+    feature = cardio_corr.abs()[cardio_corr.abs() > i].index.tolist()
+    x_train_k = x_train_[feature]
+    x_score_k = x_score_[feature]
+    err = []
+    for j in range(1,30):
+        knn = KNeighborsClassifier(n_neighbors=j)
+        knn.fit(x_train_k, y_train)
+        pred_j = knn.predict(x_score_k)
+        err.append(np.mean(y_score != pred_j))
+
+    plt.figure(figsize=(10,6))
+    plt.plot(range(1,30),err)
+    plt.xlabel('K-Value')
+    plt.ylabel('Error')
+
+# Attribute input set to 0.05 for best result
+feat_final = cardio_corr.abs()[cardio_corr.abs() > 0.05].index.tolist()
+print(feat_final)
+
+
+# Scaling data
+x_train = x_train_[feat_final]
+x_val = np.asanyarray(df_val[feat_final])
+y_val = np.asanyarray(df_val['cardio'])
+
+scale.fit(x_val)
+x_val_scaled = scale.transform(x_val)
+x_val_ = pd.DataFrame(x_val_scaled, columns=df_val[feat_final].columns)
+
+
+# K-NN with k=15
+knn = KNeighborsClassifier(n_neighbors=15)
+knn.fit(x_train, y_train)
+pred = knn.predict(x_val_)
+
+
+# Confusion Matrix
+print('Confusion Matrix =\n',confusion_matrix(y_val,pred))
+print('\n',classification_report(y_val,pred))
+
+# Logistic regression
+lr.fit(x_train,y_train)
+pred = lr.predict(x_val_)
+
+# Confusion Matrix
+print('Confusion Matrix =\n',confusion_matrix(y_val, pred))
+print('\n',classification_report(y_val, pred))
