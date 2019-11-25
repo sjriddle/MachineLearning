@@ -45,7 +45,6 @@ for i in th:
     x_score_i = x_score[attr_i]
     train_model(lr, x_train_i, x_score_i)
 
-
 scale = StandardScaler()
 scale.fit(x_train)
 x_train_scaled = scale.transform(x_train)
@@ -77,7 +76,6 @@ for i in th:
 feat_final = cardio_corr.abs()[cardio_corr.abs() > 0.05].index.tolist()
 print(feat_final)
 
-
 # Scaling data
 x_train = x_train_[feat_final]
 x_val = np.asanyarray(df_val[feat_final])
@@ -87,12 +85,10 @@ scale.fit(x_val)
 x_val_scaled = scale.transform(x_val)
 x_val_ = pd.DataFrame(x_val_scaled, columns=df_val[feat_final].columns)
 
-
 # K-NN with k=15
 knn = KNeighborsClassifier(n_neighbors=15)
 knn.fit(x_train, y_train)
 pred = knn.predict(x_val_)
-
 
 # Confusion Matrix
 print('Confusion Matrix =\n',confusion_matrix(y_val,pred))
