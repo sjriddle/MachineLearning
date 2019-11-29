@@ -1,9 +1,7 @@
-import numpy as np # linear algebra
-import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
+import pandas as pd
 import seaborn as sns
 from matplotlib import pyplot as plt
 from matplotlib import rcParams
-import os
 
 df = pd.read_csv('./cv_train.csv', sep=';')
 df.head()
