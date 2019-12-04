@@ -12,11 +12,11 @@ x_train, x_test, y_train, y_test = model_selection.train_test_split(x,y,test_siz
 
 clf = neighbors.KNeighborsClassifier()
 clf.fit(x_train, y_train)
+
 accuracy = clf.score(x_test, y_test)
 print(accuracy)
 
 example_measures = np.array([4,2,1,1,1,2,3,2,1])
 example_measures = example_measures.reshape(1,-1)
-
 prediction = clf.predict(example_measures)
 print(prediction)
