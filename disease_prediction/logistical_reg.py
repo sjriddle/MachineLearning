@@ -45,6 +45,7 @@ for i in th:
     x_score_i = x_score[attr_i]
     train_model(lr, x_train_i, x_score_i)
 
+# Scaling data
 scale = StandardScaler()
 scale.fit(x_train)
 x_train_scaled = scale.transform(x_train)
