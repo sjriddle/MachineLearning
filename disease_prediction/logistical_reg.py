@@ -86,7 +86,7 @@ scale.fit(x_val)
 x_val_scaled = scale.transform(x_val)
 x_val_ = pd.DataFrame(x_val_scaled, columns=df_val[feat_final].columns)
 
-# K-NN with k=15
+# K-Nearest Neighbor where K=15
 knn = KNeighborsClassifier(n_neighbors=15)
 knn.fit(x_train, y_train)
 pred = knn.predict(x_val_)
