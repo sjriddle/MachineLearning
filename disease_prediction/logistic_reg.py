@@ -92,11 +92,11 @@ knn.fit(x_train, y_train)
 pred = knn.predict(x_val_)
 
 # Confusion Matrix
-print('Confusion Matrix =\n',confusion_matrix(y_val,pred))
-print('\n',classification_report(y_val,pred))
+print('Confusion Matrix =\n',confusion_matrix(y_val, pred))
+print('\n',classification_report(y_val, pred))
 
 # Logistic regression
-lr.fit(x_train,y_train)
+lr.fit(x_train, y_train)
 pred = lr.predict(x_val_)
 
 # Confusion Matrix
